@@ -11,7 +11,9 @@ def scroll_reviews(
     load_timeout: float = 2,
 ) -> None:
     """
-    Scroll along the reviews tab to load more reviews.
+    Scroll along the reviews tab to load more reviews. This function scrolls
+    until no more reviews can be loaded or the maximum number of reviews loaded
+    has been reached.
 
     :param WebDriver driver: A WebDriver instance connected to a place on Google Map.
     :param int | None max_num_reviews: The maximum number of reviews to load. If `None`,
