@@ -57,5 +57,5 @@ def get_review_ratings(driver) -> list[int]:
     :rtype: list[int]
     :return: A list of review rating.
     """
-    return list(int(star_span.get_attribute('aria-label'))\
+    return list(int(star_span.get_attribute('aria-label')[0])\
                 for star_span in driver.find_elements(By.CLASS_NAME, "kvMYJc"))
