@@ -47,7 +47,7 @@ def get_review_texts(driver) -> list[str]:
     # fully expand review texts by cliking more button
     for more_button in driver.find_elements(By.XPATH, "//button[text()='Thêm']"):
         more_button.click()
-    return list(review.text() for review in driver.find_elements(By.CLASS_NAME, "wiI7pd"))
+    return list(review.text for review in driver.find_elements(By.CLASS_NAME, "wiI7pd"))
 
 def get_review_ratings(driver) -> list[int]:
     """
