@@ -30,6 +30,7 @@ def crawl_process() -> tuple[list[str], list[str]]:
     driver.find_element(By.XPATH, "//button[@class='hh2c6 ' and contains(., 'Bài đánh giá')]")\
           .click()
 
+    print('Begin crawling reviews')
     logger.info('Loading reviews...')
     scroll_reviews(driver, NUM_REVIEWS, LOADING_TIMEOUT)
 
