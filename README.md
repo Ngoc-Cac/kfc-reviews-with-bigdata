@@ -4,8 +4,6 @@
 Google Maps reviews crawling process for the main project. The crawler uses [selenium](https://pypi.org/project/selenium/) to simulate the website and crawl data through HTML elements.\
 Please note that while Google Maps **DO** provide an API, this requires you to set up a billing account and thus can be inconvenient.
 
-Because reviews contain a multitude of UTF-8 encoded characters, which will be painful to store as raw strings in any character delimited file, we store each review as a base-64 encoded string instead of raw strings. Thus, the review is **not human-readable** unless one decodes it.
-
 ## How do I run the crawler for my places?
 1. Firstly, be sure to have all necessary libraries installed, mentioned in [`requirements.txt`](/Big-Data-G4/requirements.txt). Run the following snippet for quick installation:
 ```
