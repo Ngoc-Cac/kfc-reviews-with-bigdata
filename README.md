@@ -1,6 +1,7 @@
 # Big-Data-G4
 *This branch is **NOT** meant to be merged into `/main`*
 
-Google Maps reviews crawling process for the main project. The crawler uses [selenium](https://pypi.org/project/selenium/) to simulate the website and crawl data through HTML elements.
+Google Maps reviews crawling process for the main project. The crawler uses [selenium](https://pypi.org/project/selenium/) to simulate the website and crawl data through HTML elements.\
+Please note that while Google Maps **DO** provide an API, this requires you to set up a billing account and thus can be inconvenient.
 
 Because reviews contain a multitude of UTF-8 encoded characters, which will be painful to store as raw strings in any character delimited file, we store each review as a base-64 encoded string instead of raw strings. Thus, the review is **not human-readable** unless one decodes it.
