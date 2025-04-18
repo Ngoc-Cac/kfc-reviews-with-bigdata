@@ -1,0 +1,2 @@
+# IPython stuff
+ipykernel [security]
