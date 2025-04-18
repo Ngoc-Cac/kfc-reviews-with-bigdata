@@ -6,13 +6,16 @@ from selenium.webdriver.common.keys import Keys
 
 from typing import Literal
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 def get_place_meta(driver) -> dict[Literal['address', 'price_range'], str]:
     """"""
     return {
         "address": driver.find_element(By.CLASS_NAME, 'rogA2c ').text,
         "price_range": driver.find_element(By.XPATH, '//div[@class="MNVeJb eXOdV eF9eN PnPrlf"]')\
-                            .text.split('\n')[0]
+                             .text.split('\n')[0]
     }
     
 def scroll_reviews(
@@ -45,6 +48,7 @@ def scroll_reviews(
 
         prev_num_reviews = cur_num_reviews
         cur_num_reviews = len(driver.find_elements(By.CLASS_NAME, "wiI7pd"))
+        logger.debug(f'Found {cur_num_reviews} reviews during scrolling')
 
 def get_review_texts(driver) -> list[str]:
     """
