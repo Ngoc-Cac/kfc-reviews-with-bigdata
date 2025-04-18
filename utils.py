@@ -44,7 +44,13 @@ def scroll_reviews(
     prev_num_reviews = cur_num_reviews - 1
     while (prev_num_reviews != cur_num_reviews) and cur_num_reviews < max_num_reviews:
         scrollable_zone.send_keys(Keys.END)
-        time.sleep(load_timeout) # wait to load
+
+        temp = len(driver.find_elements(By.CLASS_NAME, "wiI7pd"))
+        temp_prev = temp - 1
+        while temp <= cur_num_reviews and temp != temp_prev:
+            time.sleep(load_timeout) # wait to load
+            temp_prev = temp
+            temp = len(driver.find_elements(By.CLASS_NAME, "wiI7pd"))
 
         prev_num_reviews = cur_num_reviews
         cur_num_reviews = len(driver.find_elements(By.CLASS_NAME, "wiI7pd"))
