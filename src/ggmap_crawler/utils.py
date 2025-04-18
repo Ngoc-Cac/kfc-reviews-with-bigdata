@@ -49,13 +49,13 @@ def get_review_texts(driver) -> list[str]:
         more_button.click()
     return list(review.text for review in driver.find_elements(By.CLASS_NAME, "wiI7pd"))
 
-def get_review_ratings(driver) -> list[int]:
+def get_review_ratings(driver) -> list[str]:
     """
     Get the star rating of currently loaded reviews.
 
     :param WebDriver driver: A WebDriver instance connected to a place on Google Map.
-    :rtype: list[int]
-    :return: A list of review rating.
+    :rtype: list[str]
+    :return: A list of review rating as strings.
     """
-    return list(int(star_span.get_attribute('aria-label')[0])\
+    return list(star_span.get_attribute('aria-label')[0]\
                 for star_span in driver.find_elements(By.CLASS_NAME, "kvMYJc"))
