@@ -46,7 +46,7 @@ def crawl_process() -> tuple[list[str], list[str]]:
 
 def write_to_file(place_id: int, reviews: list[str], ratings: list[str]):
     for review, rating in zip(reviews, ratings):
-        review = review.replace('\n', '').replace('"', "'")
+        review = review.replace('\n', '. ').replace('"', "'")
         reviews_file.write(f'"{review}",{rating},{place_id}\n')
 
 
