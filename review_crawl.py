@@ -44,12 +44,9 @@ def crawl_process() -> tuple[list[str], list[str]]:
     return reviews, ratings
 
 def write_to_file(place_id: int, reviews: list[str], ratings: list[str]):
-    # write to csv, strings are encoded as base 64 under utf-8 encoding
     for review, rating in zip(reviews, ratings):
-        b64_encoded_review = base64.b64encode(bytes(review, encoding='utf-8'))
-        # b64encode returns a bytes object, we decode it into a utf-8 encoded string
-        b64_encoded_review = b64_encoded_review.decode()
-        reviews_file.write(f'{b64_encoded_review},{rating},{place_id}\n')
+        review = review.replace('\n', '').replace('"', "'")
+        reviews_file.write(f'"{review}",{rating},{place_id}\n')
 
 
 
@@ -72,7 +69,7 @@ if not osp.exists('output/'):
     Path.mkdir('output')
 reviews_file = open('output/reviews.csv', 'w', encoding='utf-8')
 metedata_file = open('output/place_metadata.csv', 'w', encoding='utf-8')
-reviews_file.write('review_b64encoded,rating,place_id\n')
+reviews_file.write('review,rating,place_id\n')
 metedata_file.write('id,url,address,price_range\n')
 
 
