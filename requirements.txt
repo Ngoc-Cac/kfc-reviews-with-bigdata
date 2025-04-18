@@ -2,6 +2,3 @@ pandas
 
 # For crawling reviews on Google Maps
 selenium [security]
-
-# IPython stuff
-ipykernel [security]
