@@ -12,7 +12,7 @@ def get_place_meta(driver) -> dict[Literal['address', 'price_range'], str]:
     return {
         "address": driver.find_element(By.CLASS_NAME, 'rogA2c ').text,
         "price_range": driver.find_element(By.XPATH, '//div[@class="MNVeJb eXOdV eF9eN PnPrlf"]')\
-                             .text.split('\n')[0]
+                            .text.split('\n')[0]
     }
     
 def scroll_reviews(
