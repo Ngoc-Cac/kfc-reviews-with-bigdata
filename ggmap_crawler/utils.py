@@ -4,7 +4,17 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
+from typing import Literal
 
+
+def get_place_meta(driver) -> dict[Literal['address', 'price_range'], str]:
+    """"""
+    return {
+        "address": driver.find_element(By.CLASS_NAME, 'rogA2c ').text,
+        "price_range": driver.find_element(By.XPATH, '//div[@class="MNVeJb eXOdV eF9eN PnPrlf"]')\
+                             .text.split('\n')[0]
+    }
+    
 def scroll_reviews(
     driver,
     max_num_reviews: int | None = None,
