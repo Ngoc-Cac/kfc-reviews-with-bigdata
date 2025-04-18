@@ -1,2 +1,2 @@
 # For crawling reviews on Google Maps
-selenium [security]
+selenium
