@@ -63,6 +63,7 @@ try:
     NUM_REVIEWS = int(parser['crawler_options']['max_reviews'])
 except Exception as e:
     logger.critical(f'Could not parse crawler.conf!\n{format_exc(e)}')
+if not NUM_REVIEWS: NUM_REVIEWS = None
 
 # get links and create output file
 with open(parser['links']['file_location'], encoding='utf-8') as file:
