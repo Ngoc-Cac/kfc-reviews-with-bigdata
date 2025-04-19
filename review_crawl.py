@@ -99,12 +99,7 @@ for i, url in enumerate(links):
 
 
     print('Getting place overview...')
-    try:
-        meta_data = get_place_meta(wait)
-    except:
-        logger.critical(f"""Exception occured while trying to get place overview for url {url}!
-{format_exc()}""")
-        meta_data = META_EXC_PLACEHOLDER
+    meta_data = get_place_meta(wait)
     metedata_file.write(f'{i},"{url}","{meta_data["address"]}",{meta_data["price_range"]}\n')
 
 
