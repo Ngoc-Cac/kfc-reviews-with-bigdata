@@ -3,6 +3,8 @@ import time
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 from typing import Literal
 
@@ -12,13 +14,15 @@ logger = logging.getLogger(__name__)
 
 def get_place_meta(driver) -> dict[Literal['address', 'price_range'], str]:
     """"""
+    wait = WebDriverWait(driver, 5)
     try:
-        price_range = driver.find_element(By.XPATH, '//div[@class="MNVeJb eXOdV eF9eN PnPrlf"]')
+        price_range = wait.until(EC.presence_of_element_located(By.XPATH, '//div[@class="MNVeJb eXOdV eF9eN PnPrlf"]'))
+        price_range = price_range.text
     except:
         price_range = '\n'
     return {
-        "address": driver.find_element(By.XPATH, '//div[@class="rogA2c "]').text,
-        "price_range": price_range.text.split('\n')[0]
+        "address": wait.until(EC.presence_of_element_located((By.CLASS_NAME, "rogA2c "))).text,
+        "price_range": price_range.split('\n')[0]
     }
     
 def scroll_reviews(
