@@ -12,16 +12,26 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def get_place_meta(driver) -> dict[Literal['address', 'price_range'], str]:
+_ADDRESS = By.CLASS_NAME, 'rogA2c '
+_STAR = By.CLASS_NAME, "kvMYJc"
+
+_REVIEW = By.XPATH, "//span[@class='wiI7pd']"
+_PRICE = By.XPATH, '//div[@class="MNVeJb eXOdV eF9eN PnPrlf"]/div'
+_MORE_BUTTON = By.XPATH, "//button[text()='Thêm']"
+_SCROLLER = By.XPATH, "//div[@class='m6QErb DxyBCb kA9KIf dS8AEf XiKgde ']"
+
+def get_place_meta(waiting_driver) -> dict[Literal['address', 'price_range'], str]:
     """"""
     wait = WebDriverWait(driver, 5)
     try:
         price_range = wait.until(EC.presence_of_element_located(By.XPATH, '//div[@class="MNVeJb eXOdV eF9eN PnPrlf"]'))
         price_range = price_range.text.split('\n')[0]
     except:
+        price_range = waiting_driver.until(EC.presence_of_element_located(_PRICE))
         price_range = ''
     return {
-        "address": wait.until(EC.presence_of_element_located((By.CLASS_NAME, "rogA2c "))).text,
+        "address": waiting_driver.until(EC.presence_of_element_located(_ADDRESS))\
+                                 .text,
         "price_range": price_range
     }
     
@@ -45,22 +55,22 @@ def scroll_reviews(
     # to this div will scroll to bottom, after which more reviews are loaded.
     if max_num_reviews is None:
         max_num_reviews = math.inf
-    scrollable_zone = driver.find_element(By.XPATH, "//div[@class='m6QErb DxyBCb kA9KIf dS8AEf XiKgde ']")
+    scrollable_zone = driver.find_element(*_SCROLLER)
 
-    cur_num_reviews = len(driver.find_elements(By.CLASS_NAME, "wiI7pd"))
+    cur_num_reviews = len(driver.find_elements(*_REVIEW))
     prev_num_reviews = cur_num_reviews - 1
     while (prev_num_reviews != cur_num_reviews) and cur_num_reviews < max_num_reviews:
         scrollable_zone.send_keys(Keys.END)
 
-        temp = len(driver.find_elements(By.CLASS_NAME, "wiI7pd"))
+        temp = len(driver.find_elements(*_REVIEW))
         temp_prev = temp - 1
         while temp <= cur_num_reviews and temp != temp_prev:
             time.sleep(load_timeout) # wait to load
             temp_prev = temp
-            temp = len(driver.find_elements(By.CLASS_NAME, "wiI7pd"))
+            temp = len(driver.find_elements(*_REVIEW))
 
         prev_num_reviews = cur_num_reviews
-        cur_num_reviews = len(driver.find_elements(By.CLASS_NAME, "wiI7pd"))
+        cur_num_reviews = len(driver.find_elements(*_REVIEW))
         logger.debug(f'Found {cur_num_reviews} reviews during scrolling')
 
 def get_review_texts(driver) -> list[str]:
@@ -72,9 +82,10 @@ def get_review_texts(driver) -> list[str]:
     :return: A list of review texts.
     """
     # fully expand review texts by cliking more button
-    for more_button in driver.find_elements(By.XPATH, "//button[text()='Thêm']"):
+    for more_button in driver.find_elements(*_MORE_BUTTON):
         more_button.click()
-    return list(review.text for review in driver.find_elements(By.CLASS_NAME, "wiI7pd"))
+    return list(review.text\
+                for review in driver.find_elements(*_REVIEW))
 
 def get_review_ratings(driver) -> list[str]:
     """
@@ -85,4 +96,4 @@ def get_review_ratings(driver) -> list[str]:
     :return: A list of review rating as strings.
     """
     return list(star_span.get_attribute('aria-label')[0]\
-                for star_span in driver.find_elements(By.CLASS_NAME, "kvMYJc"))
+                for star_span in driver.find_elements(*_STAR))
