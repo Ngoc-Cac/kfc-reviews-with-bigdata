@@ -104,11 +104,11 @@ for i, url in enumerate(links):
 
     results = crawl_process()
     if results is None:
-        print('Crawling unsuccesful! Check logs for details...')
+        print('\033[31;1mCrawling unsuccesful! Check logs for details...\033[0m')
     else:
-        print('Crawling finished! Saving to file...')
+        print('\033[31;1mCrawling finished! Saving to file...')
         write_to_file(i, *results)
-        print('Saved to file!')
+        print('Saved to file!\033[0m')
 
 
 driver.close()
