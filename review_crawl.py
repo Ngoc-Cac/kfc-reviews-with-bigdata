@@ -11,7 +11,6 @@ from selenium.webdriver import (
     FirefoxOptions
 )
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from utils import (
@@ -27,7 +26,8 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def crawl_process() -> tuple[list[str], list[str]]:
+def crawl_process(
+) -> tuple[list[str], list[str]] | None:
     # go to reviews tab by clicking reviews button
     driver.find_element(By.XPATH, "//button[@class='hh2c6 ' and contains(., 'Bài đánh giá')]")\
           .click()
@@ -47,7 +47,10 @@ def crawl_process() -> tuple[list[str], list[str]]:
         return
     return reviews, ratings
 
-def write_to_file(place_id: int, reviews: list[str], ratings: list[str]):
+def write_to_file(
+place_id: int,
+reviews: list[str],
+ratings: list[str]):
     for review, rating in zip(reviews, ratings):
         review = review.replace('\n', '. ').replace('"', "'")
         reviews_file.write(f'"{review}",{rating},{place_id}\n')
