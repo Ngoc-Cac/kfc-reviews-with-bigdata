@@ -32,26 +32,29 @@ def get_place_meta(waiting_driver) -> dict[Literal['address', 'price_range'], st
     :return: A dictionary with keys `address` and `price_range`.
     :rtype: dict[Literal['address', 'price_range'], str]
     """
+    scroll_action = ActionChains(waiting_driver._driver)
+    address = waiting_driver.until(EC.presence_of_element_located(_ADDRESS))
+    # There will be a case where address.text return empty string
+    # This is because it is NOT in view, we use ActionChains to scroll into view
+    if not address.text:
+        x, y = address.location_once_scrolled_into_view.values()
+        scroll_action.move_to_element_with_offset(address, x, y)
+    address = address.text
+
     try:
         price_range = waiting_driver.until(EC.presence_of_element_located(_PRICE))
     except TimeoutException:
         price_range = ''
     else:
         # If price_range exists, parse the text
-        # There will be a case where price_range.text return empty string
-        # This is because it is NOT in view, we use ActionChains to scroll into view
         if not price_range.text:
+            # similarly to the address case
             x, y = price_range.location_once_scrolled_into_view.values()
-            ActionChains(waiting_driver._driver)\
-                .move_to_element_with_offset(price_range, x, y)\
-                .perform()
+            scroll_action.move_to_element_with_offset(price_range, x, y)\
+                         .perform()
         price_range = price_range.text.split('\n')[0]
 
-    return {
-        "address": waiting_driver.until(EC.presence_of_element_located(_ADDRESS))\
-                                 .text,
-        "price_range": price_range
-    }
+    return {"address": address, "price_range": price_range}
     
 def scroll_reviews(
     driver,
