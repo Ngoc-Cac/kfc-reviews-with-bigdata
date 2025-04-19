@@ -1,10 +1,11 @@
 import math
 import time
 
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
+
 
 from typing import Literal
 
@@ -22,13 +23,21 @@ _SCROLLER = By.XPATH, "//div[@class='m6QErb DxyBCb kA9KIf dS8AEf XiKgde ']"
 
 def get_place_meta(waiting_driver) -> dict[Literal['address', 'price_range'], str]:
     """"""
-    wait = WebDriverWait(driver, 5)
     try:
-        price_range = wait.until(EC.presence_of_element_located(By.XPATH, '//div[@class="MNVeJb eXOdV eF9eN PnPrlf"]'))
-        price_range = price_range.text.split('\n')[0]
-    except:
         price_range = waiting_driver.until(EC.presence_of_element_located(_PRICE))
         price_range = ''
+    else:
+        # If price_range exists, parse the text
+        # There will be a case where price_range.text return empty string
+        # This is because it is NOT in view, we use ActionChains to scroll into view
+        if not price_range.text:
+            x, y = price_range.location_once_scrolled_into_view.values()
+            ActionChains(waiting_driver._driver)\
+                .move_to_element_with_offset(price_range, x, y)\
+                .perform()
+            # price_range = waiting_driver.until(EC.presence_of_element_located(_PRICE))
+        price_range = price_range.text.split('\n')[0]
+
     return {
         "address": waiting_driver.until(EC.presence_of_element_located(_ADDRESS))\
                                  .text,
