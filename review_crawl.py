@@ -93,7 +93,7 @@ logger.info('Driver initialized...')
 
 META_EXC_PLACEHOLDER = {'address': '', 'price_range': ''}
 for i, url in enumerate(links):
-    print(f'Now crawling from {url}')
+    print(f'Now crawling from \033[34;4m{url}\033[0m')
     logger.info(f'Connecting to {url}')
     driver.get(url)
 
