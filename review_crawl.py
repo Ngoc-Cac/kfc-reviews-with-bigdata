@@ -11,6 +11,8 @@ from selenium.webdriver import (
     FirefoxOptions
 )
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 from utils import (
     get_place_meta,
@@ -82,6 +84,7 @@ if HEADLESS: options.add_argument('--headless')
 
 logger.info('Initializing driver...')
 driver = Firefox(options=options)
+wait = WebDriverWait(driver, 10)
 logger.info('Driver initialized...')
 
 
@@ -94,7 +97,7 @@ for i, url in enumerate(links):
 
     print('Getting place overview...')
     try:
-        meta_data = get_place_meta(driver)
+        meta_data = get_place_meta(wait)
     except:
         logger.critical(f"""Exception occured while trying to get place overview for url {url}!
 {format_exc()}""")
