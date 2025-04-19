@@ -23,7 +23,15 @@ _MORE_BUTTON = By.XPATH, "//button[text()='Thêm']"
 _SCROLLER = By.XPATH, "//div[@class='m6QErb DxyBCb kA9KIf dS8AEf XiKgde ']"
 
 def get_place_meta(waiting_driver) -> dict[Literal['address', 'price_range'], str]:
-    """"""
+    """
+    Get the address and price range of Google Maps' place. The price range may
+    be an empty string simply because the place has no price range.
+
+    :param WebDriverWait waiting_driver: A WebDriverWait instance connected to
+        a place on Google Map.
+    :return: A dictionary with keys `address` and `price_range`.
+    :rtype: dict[Literal['address', 'price_range'], str]
+    """
     try:
         price_range = waiting_driver.until(EC.presence_of_element_located(_PRICE))
     except TimeoutException:
