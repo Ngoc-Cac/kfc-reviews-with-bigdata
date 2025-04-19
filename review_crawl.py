@@ -112,7 +112,7 @@ for i, url in enumerate(links):
     if results is None:
         print('\033[31;1mCrawling unsuccesful! Check logs for details...\033[0m')
     else:
-        print('\033[31;1mCrawling finished! Saving to file...')
+        print('\033[32;1mCrawling finished! Saving to file...')
         write_to_file(i, *results)
         print('Saved to file!\033[0m')
 
