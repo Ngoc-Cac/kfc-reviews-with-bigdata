@@ -17,12 +17,12 @@ def get_place_meta(driver) -> dict[Literal['address', 'price_range'], str]:
     wait = WebDriverWait(driver, 5)
     try:
         price_range = wait.until(EC.presence_of_element_located(By.XPATH, '//div[@class="MNVeJb eXOdV eF9eN PnPrlf"]'))
-        price_range = price_range.text
+        price_range = price_range.text.split('\n')[0]
     except:
-        price_range = '\n'
+        price_range = ''
     return {
         "address": wait.until(EC.presence_of_element_located((By.CLASS_NAME, "rogA2c "))).text,
-        "price_range": price_range.split('\n')[0]
+        "price_range": price_range
     }
     
 def scroll_reviews(
