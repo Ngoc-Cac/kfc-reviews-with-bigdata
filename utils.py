@@ -1,6 +1,7 @@
 import math
 import time
 
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -25,6 +26,7 @@ def get_place_meta(waiting_driver) -> dict[Literal['address', 'price_range'], st
     """"""
     try:
         price_range = waiting_driver.until(EC.presence_of_element_located(_PRICE))
+    except TimeoutException:
         price_range = ''
     else:
         # If price_range exists, parse the text
@@ -35,7 +37,6 @@ def get_place_meta(waiting_driver) -> dict[Literal['address', 'price_range'], st
             ActionChains(waiting_driver._driver)\
                 .move_to_element_with_offset(price_range, x, y)\
                 .perform()
-            # price_range = waiting_driver.until(EC.presence_of_element_located(_PRICE))
         price_range = price_range.text.split('\n')[0]
 
     return {
