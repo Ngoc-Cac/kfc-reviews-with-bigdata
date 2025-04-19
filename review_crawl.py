@@ -39,9 +39,9 @@ def crawl_process() -> tuple[list[str], list[str]]:
     try:
         reviews = get_review_texts(driver)
         ratings = get_review_ratings(driver)
-    except Exception as e:
+    except:
         logger.critical(f"""Exception occured while trying to crawl reviews for {url}
-{format_exc(e)}""")
+{format_exc()}""")
         return
     return reviews, ratings
 
@@ -95,9 +95,9 @@ for i, url in enumerate(links):
     print('Getting place overview...')
     try:
         meta_data = get_place_meta(driver)
-    except Exception as e:
+    except:
         logger.critical(f"""Exception occured while trying to get place overview for url {url}!
-{format_exc(e)}""")
+{format_exc()}""")
         meta_data = META_EXC_PLACEHOLDER
     metedata_file.write(f'{i},"{url}","{meta_data["address"]}",{meta_data["price_range"]}\n')
 
