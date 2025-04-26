@@ -1,4 +1,4 @@
-# Big-Data-G4
+# Big-Data-G4: Review Crawler
 Google Maps reviews crawling process for the main project. The crawler uses [selenium](https://pypi.org/project/selenium/) to simulate the website and crawl data through HTML elements.\
 Please note that while Google Maps **DO** provide an API, this requires you to set up a billing account and thus can be inconvenient.
 
@@ -7,10 +7,6 @@ Please note that while Google Maps **DO** provide an API, this requires you to s
 ```
 pip install -r requirements.txt
 ```
-2. Secondly, you need to list out places you want to crawl reviews from. Please list all links in a file **seperated** by newline characters, see [`links.txt`](/Big-Data-G4/links.txt) for an example.
+2. Create your own scripts using the pre-configured `ggplace_review_crawler.ReviewCrawler` to crawl reviews from your place of choice. The crawler will only return the results as a Python `dict`. You will need to explicitly define how you want to save the results. Check out [`crawling.ipynb`](./crawling.ipynb) for an example.
 
-3. Then, go to [`crawler.conf`](/Big-Data-G4/crawler.conf) and replace the `file_location` with the path to the file where you have listed out the links of interest. You may also change other attributes if necessary.
-
-Now, navigate to [`review_crawl.py`](/Big-Data-G4/review_crawl.py) and run the file as is.
-
-If any crawling was unsuccessful, please create an Issue and provide the Exception traceback (if any). Traceback Exception is available in `/logs`
+If any crawling was unsuccessful, please create an Issue and provide the Exception traceback (if any). Traceback is available in `/logs`
