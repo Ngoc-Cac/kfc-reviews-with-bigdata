@@ -1,0 +1,11 @@
+__pycache__/
+
+logs/
+
+output/
+
+test*/
+test*.*
+
+temp*/
+temp*.*
