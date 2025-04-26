@@ -9,4 +9,4 @@ pip install -r requirements.txt
 ```
 2. Create your own scripts using the pre-configured `ggplace_review_crawler.ReviewCrawler` to crawl reviews from your place of choice. The crawler will only return the results as a Python `dict`. You will need to explicitly define how you want to save the results. Check out [`crawling.ipynb`](./crawling.ipynb) for an example.
 
-If any crawling was unsuccessful, please create an Issue and provide the Exception traceback (if any). Traceback is available in `/logs`
+If any crawling was unsuccessful, please create an Issue and provide the Exception traceback (if any). Traceback is available in `/logs`.
