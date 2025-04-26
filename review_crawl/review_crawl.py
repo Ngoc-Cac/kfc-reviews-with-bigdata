@@ -70,12 +70,13 @@ except Exception as e:
 if not NUM_REVIEWS: NUM_REVIEWS = None
 
 # get links and create output file
-with open(parser['links']['file_location'], encoding='utf-8') as file:
+output_loc = parser['file_locations']['output_loc']
+with open(parser['file_locations']['input_loc'], encoding='utf-8') as file:
     links = file.read().split('\n')
 
-if not osp.exists('output/'): Path.mkdir('output')
-reviews_file = open('output/reviews.csv', 'w', encoding='utf-8')
-metedata_file = open('output/place_metadata.csv', 'w', encoding='utf-8')
+if not osp.exists(output_loc): Path.mkdir('output_loc')
+reviews_file = open(osp.join(output_loc, 'reviews.csv'), 'w', encoding='utf-8')
+metedata_file = open(osp.join(output_loc, 'place_metadata.csv'), 'w', encoding='utf-8')
 reviews_file.write('review,rating,place_id\n')
 metedata_file.write('id,url,address,price_range\n')
 
