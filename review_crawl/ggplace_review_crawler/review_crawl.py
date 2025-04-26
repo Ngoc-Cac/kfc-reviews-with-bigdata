@@ -10,7 +10,7 @@ from selenium.webdriver import (
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
-from utils import (
+from ggplace_review_crawler.utils import (
     get_place_meta,
     get_review_ratings,
     get_review_texts,
@@ -21,7 +21,7 @@ from utils import (
 from typing import Literal
 
 # logging stuff
-import log_setup # this just sets up logging, it's not meant to be used as a module
+# import ggplace_review_crawler._log_setup # this just sets up logging, it's not meant to be used as a module
 import logging
 logger = logging.getLogger(__name__)
 
