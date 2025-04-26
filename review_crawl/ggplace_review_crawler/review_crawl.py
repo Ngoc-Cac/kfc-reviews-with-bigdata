@@ -92,6 +92,7 @@ class ReviewCrawler:
         results = self._crawl_process(url, load_timeout, num_reviews)
         if results is None:
             print('\033[31;1mCrawling unsuccesful! Check logs for details...\033[0m')
+            results = [], []
         else:
             print('\033[32;1mCrawling finished!\033[0m')
         return {
@@ -121,7 +122,7 @@ class ReviewCrawler:
 
         print('Begin crawling reviews')
         logger.info('Loading reviews...')
-        scroll_reviews(self._driver, num_reviews, load_timeout)
+        scroll_reviews(self._driver, num_reviews if num_reviews > 0 else None, load_timeout)
 
         logger.info('Crawling reviews data...')
         try:
