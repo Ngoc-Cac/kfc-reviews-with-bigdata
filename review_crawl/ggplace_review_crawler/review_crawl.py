@@ -29,17 +29,34 @@ logger = logging.getLogger(__name__)
 class NoConnectedDriver(Exception):
     """Exception raised when there is no initialized WebDriver"""
 
-class ReviewCrawler():
+class ReviewCrawler:
+    """
+    Crawling reviews from Google Place using a Firefox web driver.
+    Before opening a web driver, you can configure options through `self.driver_opts`.
+
+    Keep in mind that this should be an option in a Firefox browser.
+    """
     _REVIEW_BUTTON = "//button[@class='hh2c6 ' and contains(., 'Bài đánh giá')]"
     def __init__(self, language: str = 'vi', headless: bool = True):
+        """
+        Initialize the crawler. You can specify the language for the browser
+        as well as whether the browser should run in the background.
+
+        :param str language: The default language of the browser. This should follow
+            the ISO-639 languge code. This is `vi` by default.
+        :param bool headless: Whether or not the web driver should run in the background.
+            If `False`, a browser instance will appear on your taskbar.
+        """
         self.driver_opts = FirefoxOptions()
         self._driver = None
 
         self.driver_opts.set_preference("intl.accept_languages", language)
-        if headless:
-            self.driver_opts.add_argument('--headless')
+        if headless: self.driver_opts.add_argument('--headless')
 
     def open(self):
+        """
+        Open a web driver instance with the pre-configured options.
+        """
         logger.info('Initializing driver...')
         self._driver = Firefox(options=self.driver_opts)
         self._wait = WebDriverWait(self._driver, 20)
@@ -47,9 +64,21 @@ class ReviewCrawler():
 
     def crawl_from(self,
         url: str,
-        num_reviews: int,
-        load_timeout: float
+        num_reviews: int = 10,
+        load_timeout: float = 2
     ) -> dict[Literal['address', 'price_range', 'reviews', 'ratings'], str]:
+        """
+        Starting crawling data from a place specified with `url`.
+
+        :param int num_reviews: Specify how many reviews to crawl. To crawl all available
+            reviews, set to `0`.
+        :param float load_timeout: Specify the duration of timeout to wait between each interactions.
+            This is very crucial when loading reviews and will result in inaccurate results if the waiting
+            time is too low.
+        
+        :return: A dictionary containing `address`, `price_range`, `reviews` and their corresponding `ratings`.
+        :rtype: dict
+        """
         if self._driver is None:
             raise NoConnectedDriver('No WebDriver have been initialized. Please check if you have opened a connection!')
         
@@ -73,6 +102,9 @@ class ReviewCrawler():
         }
 
     def close(self,):
+        """
+        Close the web driver.
+        """
         self._driver.quit()
 
     
