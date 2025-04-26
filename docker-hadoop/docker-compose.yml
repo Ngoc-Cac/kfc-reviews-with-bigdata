@@ -1,0 +1,70 @@
+version: '3'
+
+services:
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    ports:
+      - 9000:9000  # Namenode RPC for HDFS clients
+      - 9870:9870  # WebUI - dfs.namenode.http-address
+    volumes:
+      - hadoop_namenode:/hadoop/dfs/name
+    environment:
+      - CLUSTER_NAME=test
+    env_file:
+      - ./hadoop.env
+    networks:
+      - hadoop
+      
+  datanode1:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode1
+    ports:
+      - 9864:9864  # WebUI - dfs.datanode.http.address
+      - 9866:9866  # Data transfer - dfs.datanode.address
+    depends_on:
+      - namenode
+    volumes:
+      - hadoop_datanode1:/hadoop/dfs/data
+    env_file:
+      - ./hadoop.env
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+    networks:
+      - hadoop
+
+  hue:
+    image: gethue/hue
+    container_name: hue
+    ports:
+      - 8000:8888  # WebUI
+    depends_on:
+      - namenode
+    volumes:
+      - ./conf/hue.ini:/usr/share/hue/desktop/conf/z-hue.ini
+    networks:
+      - hadoop
+      - frontend
+
+  spark-notebook:
+    image: jupyter/pyspark-notebook
+    command: start-notebook.sh --ServerApp.password='' --ServerApp.token=''
+    ports: 
+      - 8888:8888  # WebUI
+      - 4040:4040  # Spark WebUI when local session started
+    depends_on:
+      - namenode
+    volumes:
+      - ./data-mount:/home/jovyan/work
+      - $HOME/.m2/:/home/jovyan/.m2/
+    networks: 
+      - hadoop
+      - frontend
+  
+volumes:
+  hadoop_namenode:
+  hadoop_datanode1:
+
+networks:
+  hadoop:
+  frontend:
