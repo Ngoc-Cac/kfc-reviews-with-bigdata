@@ -18,7 +18,7 @@ To setup, just import this file. Afterwards, call logging.getLogger(__name__)
 to create a logger and just log away.
 """
 
-ROOT_DIR = osp.abspath(osp.dirname(__file__))
+ROOT_DIR = osp.abspath(osp.dirname(__name__))
 log_dir = osp.join(ROOT_DIR, 'logs')
 if not osp.exists(log_dir):
     Path(log_dir).mkdir()
