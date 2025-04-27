@@ -1,7 +1,11 @@
+# python cache
 __pycache__/
 
-logs*/
+# jupyter notebook checkpoint
+.ipynb-checkpoint
 
+# Misc folders and files
+logs*/
 output/
 
 test*/
