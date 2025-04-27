@@ -1,14 +1,21 @@
-# Docker container with Hadoop and Spark installed
+# Big-Data-G4: Docker application with Hadoop and Spark installed
 This is a Docker container with Hadoop, Spark and Jupyter installed.
 
-The Jupyter Server Web UI can be opened at http://localhost:8888.
+The Jupyter Server Web UI can be accessed at http://localhost:8888.
 
-## How do I run the container?
+## Quick start
 To run the container, you need to have Docker installed on your machine (of course). Then, in your CLI of choice, navigate to this folder and run:
 ```
 docker-compose up -d
 ```
 to run the container in detached mode.
+
+## What services are available?
+This application provides Hadoop service, Spark service for processing using PySpark and Jupyter service for interactive Python sessions. An optional [Hue](https://gethue.com/) service is also provided for HDFS visualization. However, this image can be removed.
+
+The Hadoop service is run with images provided by the [big-data-europe](https://github.com/big-data-europe) project, the repo can be found at [docker-hadoop](https://github.com/big-data-europe/docker-hadoop).
+
+The Jupyter service with Pyspark installed is run with the [pyspark-notebook](https://hub.docker.com/r/jupyter/pyspark-notebook) image provided by [jupyter](https://jupyter.org/).
 
 ## Using Jupyter Notebook
 To use the Jupyter Server in your notebook session, when selecting a kernel, select a Jupyter Server and specify the connection as `http://localhost:8888`. When entered, you will be prompted to connect an insecure network, this is because the conenction is passwordless and require no token authentication.

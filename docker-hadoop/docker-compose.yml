@@ -49,7 +49,7 @@ services:
   spark-notebook:
     image: jupyter/pyspark-notebook
     command: start-notebook.sh --ServerApp.password='' --ServerApp.token=''
-    ports: 
+    ports:
       - 8888:8888  # WebUI
       - 4040:4040  # Spark WebUI when local session started
     depends_on:
