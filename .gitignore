@@ -2,7 +2,7 @@
 __pycache__/
 
 # jupyter notebook checkpoint
-.ipynb-checkpoint
+.ipynb-checkpoints/
 
 # Misc folders and files
 logs*/
