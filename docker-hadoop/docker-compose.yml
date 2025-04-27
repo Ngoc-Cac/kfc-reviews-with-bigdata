@@ -33,19 +33,6 @@ services:
     networks:
       - hadoop
 
-  hue:
-    image: gethue/hue
-    container_name: hue
-    ports:
-      - 8000:8888  # WebUI
-    depends_on:
-      - namenode
-    volumes:
-      - ./conf/hue.ini:/usr/share/hue/desktop/conf/z-hue.ini
-    networks:
-      - hadoop
-      - frontend
-
   spark-notebook:
     image: jupyter/pyspark-notebook
     command: start-notebook.sh --ServerApp.password='' --ServerApp.token=''
