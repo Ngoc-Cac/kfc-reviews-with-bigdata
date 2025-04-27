@@ -11,14 +11,13 @@ docker-compose up -d
 to run the container in detached mode.
 
 ## What services are available?
-This application provides Hadoop service, Spark service for processing using PySpark and Jupyter service for interactive Python sessions. An optional [Hue](https://gethue.com/) service is also provided for HDFS visualization. However, this image can be removed.
-
-The Hadoop service is run with images provided by the [big-data-europe](https://github.com/big-data-europe) project, the repo can be found at [docker-hadoop](https://github.com/big-data-europe/docker-hadoop).
+The Hadoop service is run with images provided by the [big-data-europe](https://github.com/big-data-europe) project, the repo can be found at [docker-hadoop](https://github.com/big-data-europe/docker-hadoop). You may access the WebHDFS service through http://localhost:9870.\
+However, for clients connecting to the WebHDFS service, you need to connect this client **WITHIN** the appropriate container and through the address `http://namenode:9000`. Check [`crawling.ipynb`](../review_crawl/crawling.ipynb) for an example.
 
 The Jupyter service with Pyspark installed is run with the [pyspark-notebook](https://hub.docker.com/r/jupyter/pyspark-notebook) image provided by [jupyter](https://jupyter.org/).
 
 ## Using Jupyter Notebook
-To use the Jupyter Server in your notebook session, when selecting a kernel, select a Jupyter Server and specify the connection as `http://localhost:8888`. When entered, you will be prompted to connect an insecure network, this is because the conenction is passwordless and require no token authentication.
+To use the Jupyter Server in your notebook session, when selecting a kernel, select a Jupyter Server and specify the connection as http://localhost:8888. When entered, you will be prompted to connect to an insecure network, this is because the conenction is passwordless and require no token authentication.
 
 This is fine as you are connecting to your locally hosted server. However, in case you need to create a server for others to connect to, specify a password by changing line 51 in [`docker-compose.yml`](./docker-compose.yml).
 
