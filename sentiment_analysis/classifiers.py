@@ -24,7 +24,7 @@ class MLPClassifierWithPhoBERT(BaseClassifierWithPhoBERT):
         
         hidden_layer = nn.Sequential()
         prev_dim = 768
-        for i, dim in enumerate(inner_dims):
+        for dim in inner_dims:
             hidden_layer.append(nn.Linear(prev_dim, dim))
             hidden_layer.append(activation_fn)
 
