@@ -1,6 +1,8 @@
 from transformers import AutoModel
 from torch import nn
 
+from typing import Iterable
+
 
 class BaseClassifierWithPhoBERT(nn.Module):
     def __init__(self, hidden_layer):
@@ -17,14 +19,17 @@ class BaseClassifierWithPhoBERT(nn.Module):
         return self.hidden_layer(phobert_embeddings['pooler_output'])
     
 class MLPClassifierWithPhoBERT(BaseClassifierWithPhoBERT):
-    def __init__(self, inner_dim: int = 512, use_relu: bool = True):
+    def __init__(self, inner_dims: Iterable[int] | None = None, use_relu: bool = True):
         activation_fn = nn.ReLU() if use_relu else nn.Sigmoid()
         
-        hidden_layer = nn.Sequential(
-            nn.Linear(768, inner_dim),
-            activation_fn,
-            nn.Linear(inner_dim, inner_dim),
-            activation_fn,
-            nn.Linear(inner_dim, 3)
-        )
+        hidden_layer = nn.Sequential()
+        prev_dim = 768
+        for i, dim in enumerate(inner_dims):
+            hidden_layer.append(nn.Linear(prev_dim, dim))
+            hidden_layer.append(activation_fn)
+
+            prev_dim = dim
+
+        hidden_layer.append(nn.Linear(prev_dim, 3))
+
         super().__init__(hidden_layer)
