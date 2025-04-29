@@ -2,6 +2,12 @@
 This is a project on Sentiment Analysis using Big Data framework Apache Hadoop and Apache Spark. For ease of deployment, we opt for a multi-container Docker application to install the necessary service: Hadoop, Spark, Python and Jupyter.\
 The project aims to develop a classification model on general comments about the chain KFC. In order to train the model, we crawled reviews from KFC locations within Hồ Chí Minh city on Google Maps.
 
+
+#### Table of Contents
+- [**Overview**](#overview)
+- [**References**](#ref)
+
+<a name="overview"></a>
 ## Overview
 The whole project can be best explained by the following figure:
 
@@ -31,7 +37,9 @@ To see how one deploys, runs as well as connecting to the JupyterLab instance, v
 
 </details>
 
-### References
+<a name="ref"></a>
+
+## References
 ### Our contributors:
 <a href="https://github.com/Ngoc-Cac">
     <img src="https://avatars.githubusercontent.com/u/144905277?v=4" alt="drawing" width="60">
