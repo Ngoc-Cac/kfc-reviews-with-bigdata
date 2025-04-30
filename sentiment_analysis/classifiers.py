@@ -19,8 +19,9 @@ class BaseClassifierWithPhoBERT(nn.Module):
         return self.hidden_layer(phobert_embeddings['pooler_output'])
     
 class MLPClassifierWithPhoBERT(BaseClassifierWithPhoBERT):
-    def __init__(self, inner_dims: Iterable[int] | None = None, use_relu: bool = True):
-        activation_fn = nn.ReLU() if use_relu else nn.Sigmoid()
+    def __init__(self, inner_dims: Iterable[int] | None = None, activation_fn: None | nn.Module = None):
+        if activation_fn is None:
+            activation_fn = nn.ReLU()
         
         hidden_layer = nn.Sequential()
         prev_dim = 768
