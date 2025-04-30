@@ -22,7 +22,7 @@ In the application, we deploy two images provided by [`big-data-europ/docker-had
 For processing with Spark, we use the official [`jupyter/pyspark-notebook`](https://hub.docker.com/r/jupyter/pyspark-notebook) image. The latest image has Python 3.11.6 installed with PySpark. The image also hosts a local JupyterLab session where one can easily connect to from outside of the Docker container.
 
 For more information on the application, see [`docker-hadoop/README.md`](./docker-hadoop/README.md)
-To see how one deploys, runs as well as connecting to the JupyterLab instance, visit [`how_to_setup.ipynb`](how_to_setup.ipynb).
+To see how one deploys, runs as well as connecting to the JupyterLab instance, visit [`how_to_setup.ipynb`](how_tos.ipynb).
 </details>
 
 <details>
