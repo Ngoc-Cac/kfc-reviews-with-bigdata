@@ -24,4 +24,6 @@ This is fine as you are connecting to your locally hosted server. However, in ca
 Note that when running, the notebook is running within the container's file system. Any data on your host machine is shared through the [`data-mount`](./data-mount/) folder.
 
 ## References
-The `docker-compose.yml` and `hadoop.env` file is provided by [hadoop-spark](https://github.com/OneCricketeer/docker-stacks/tree/master/hadoop-spark) with minor adjustments to suit this project.
+- The docker-hadoop images are provided by [big-data-europe/docker-hadoop](https://github.com/big-data-europe).
+- The pyspark-notebook image is provided by [jupyter/pyspark-notebook](https://hub.docker.com/r/jupyter/pyspark-notebook). This image belongs to the [Jupyter Docker Stacks](https://jupyter-docker-stacks.readthedocs.io/en/latest/) series.
+- The `docker-compose.yml` and `hadoop.env` file is provided by [hadoop-spark](https://github.com/OneCricketeer/docker-stacks/tree/master/hadoop-spark) with minor adjustments to suit this project.
