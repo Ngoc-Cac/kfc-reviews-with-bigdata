@@ -6,10 +6,13 @@ The project aims to develop a classification model on general comments about the
 #### Table of Contents
 - [**Overview**](#overview)
     - [Deploying the Docker Application](#docker_deploy)
+    - [Crawling Reviews from Google Maps](#reviews_crawl)
+    - [Processing data with PySpark](#reviews_store)
+    - [Model Training and Evaluation](#models)
 - [**References**](#ref)
 
 ## Overview
-<a id="overview"></a>
+<!-- <a id="overview"></a> -->
 The whole project can be best explained by the following figure:
 
 ![workflow](./resource/pngs/workflow.png)
@@ -27,16 +30,21 @@ For more information on the application, see [`docker-hadoop/README.md`](./docke
 To see how one deploys, runs as well as connecting to the JupyterLab instance, visit [`how_to_setup.ipynb`](how_tos.ipynb).
 </details>
 
+<a name="reviews_crawl"></a>
 <details>
 <summary><b>Crawling Reviews from Google Maps</b></summary>
 
 
 </details>
+
+<a name="reviews_store"></a>
 <details>
-<summary><b>Storing Reviews on Hadoop HDFS and Processing data with PySpark</b></summary>
+<summary><b>Processing data with PySpark</b></summary>
 
 
 </details>
+
+<a name="models"></a>
 <details>
 <summary><b>Model Training and Evaluation</b></summary>
 
