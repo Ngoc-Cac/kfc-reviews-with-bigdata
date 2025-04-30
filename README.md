@@ -5,15 +5,17 @@ The project aims to develop a classification model on general comments about the
 
 #### Table of Contents
 - [**Overview**](#overview)
+    - [Deploying the Docker Application](#docker_deploy)
 - [**References**](#ref)
 
-<a name="overview"></a>
 ## Overview
+<a id="overview"></a>
 The whole project can be best explained by the following figure:
 
 ![workflow](./resource/pngs/workflow.png)
 *Figure: The project's overall workflow*
 
+<a name="docker_deploy"></a>
 <details>
 <summary><b>Deploying the Docker Application</b></summary>
 
