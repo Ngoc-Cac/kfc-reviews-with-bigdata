@@ -19,7 +19,10 @@ class BaseClassifierWithPhoBERT(nn.Module):
         return self.hidden_layer(phobert_embeddings['pooler_output'])
     
 class MLPClassifierWithPhoBERT(BaseClassifierWithPhoBERT):
-    def __init__(self, inner_dims: Iterable[int] | None = None, activation_fn: None | nn.Module = None):
+    def __init__(self,
+        inner_dims: Iterable[int] | None = None,
+        activation_fn: None | nn.Module = None
+    ):
         if inner_dims is None:
             inner_dims = []
         if activation_fn is None:
