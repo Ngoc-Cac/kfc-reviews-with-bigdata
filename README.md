@@ -12,7 +12,6 @@ The project aims to develop a classification model on general comments about the
 - [**References**](#ref)
 
 ## Overview
-<!-- <a id="overview"></a> -->
 The whole project can be best explained by the following figure:
 
 ![workflow](./resource/pngs/workflow.png)
