@@ -7,6 +7,7 @@ Please note that while Google Maps **DO** provide an API, this requires you to s
 ```
 pip install -r requirements.txt
 ```
-2. Create your own scripts using the pre-configured `ggplace_review_crawler.ReviewCrawler` to crawl reviews from your place of choice. The crawler will only return the results as a Python `dict`. You will need to explicitly define how you want to save the results. Check out [`crawling.ipynb`](./crawling.ipynb) for an example.
+2. Because the crawler uses a Firefox web driver, you must also install Firefox beforehand.
+3. Create your own scripts using the pre-configured `ggplace_review_crawler.ReviewCrawler` to crawl reviews from your place of choice. The crawler will only return the results as a Python `dict`. You will need to explicitly define how you want to save the results. Check out [`crawling.ipynb`](./crawling.ipynb) for an example.
 
 If any crawling was unsuccessful, please create an Issue and provide the Exception traceback (if any). Traceback is available in `/logs`.

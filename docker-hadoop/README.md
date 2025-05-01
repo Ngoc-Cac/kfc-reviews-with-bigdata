@@ -17,11 +17,13 @@ However, for clients connecting to the WebHDFS service, you need to connect this
 The Jupyter service with Pyspark installed is run with the [pyspark-notebook](https://hub.docker.com/r/jupyter/pyspark-notebook) image provided by [jupyter](https://jupyter.org/).
 
 ## Using Jupyter Notebook
-To use the Jupyter Server in your notebook session, when selecting a kernel, select a Jupyter Server and specify the connection as http://localhost:8888. When entered, you will be prompted to connect to an insecure network, this is because the conenction is passwordless and require no token authentication.
+To use the Jupyter Server in your notebook session, when selecting a kernel, select `Existing Jupyter Server...` and specify the connection as http://localhost:8888. When entered, you will be prompted to connect to an insecure network, this is because the server is set up to be **passwordless** and require no token authentication.
 
-This is fine as you are connecting to your locally hosted server. However, in case you need to create a server for others to connect to, specify a password by changing line 51 in [`docker-compose.yml`](./docker-compose.yml).
+This is fine as you are connecting to your locally hosted server. However, in case you want to share your server to others, specify a password or include token authentication by changing line 51 in [`docker-compose.yml`](./docker-compose.yml).
 
-Note that when running, the notebook is running within the container's file system. Any data in your host machine is synced through the [`data-mount`](./data-mount/) folder.
+Note that when running, the notebook is running within the container's file system. Any data on your host machine is shared through the [`data-mount`](./data-mount/) folder.
 
 ## References
-The `docker-compose.yml` and `hadoop.env` file is provided by [hadoop-spark](https://github.com/OneCricketeer/docker-stacks/tree/master/hadoop-spark) with minor adjustments to suit this project.
+- The docker-hadoop images are provided by [big-data-europe/docker-hadoop](https://github.com/big-data-europe).
+- The pyspark-notebook image is provided by [jupyter/pyspark-notebook](https://hub.docker.com/r/jupyter/pyspark-notebook). This image belongs to the [Jupyter Docker Stacks](https://jupyter-docker-stacks.readthedocs.io/en/latest/) series.
+- The `docker-compose.yml` and `hadoop.env` file is provided by [hadoop-spark](https://github.com/OneCricketeer/docker-stacks/tree/master/hadoop-spark) with minor adjustments to suit this project.
