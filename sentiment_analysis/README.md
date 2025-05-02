@@ -28,7 +28,7 @@ If you want to test some stuff out with the DL models, there are two things you 
 ### 1. Decide whether or not you want to use GPU resources for computations.
 If this is a resounding yes and you also want to use PyTorch within the Docker application, you need to head over to [docker-hadoop/docker-compose.yml](../docker-hadoop/docker-compose.yml) and change a few things. Go to the `spark-notebook` service and insert the following attribute:
 
-***Note**: if you do NOT want to do this within the Docker Application, disregard the steps above.*
+***Note**: if you do NOT want to do this within the Docker Application, disregard this.*
 ```yaml
 service:
   spark-notebook:
