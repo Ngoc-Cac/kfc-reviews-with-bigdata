@@ -24,3 +24,29 @@ After preprocessing, the data is saved back into the HDFS for data anlytics. Fur
 ---
 ---
 ## Installing PyTorch and Sharing GPU resources to Docker Container
+If you want to test some stuff out with the DL models, there are two things you need to do:
+### 1. Decide whether or not you want to use GPU resources for computations.
+If this is a resounding yes and you also want to use PyTorch within the Docker application, you need to head over to [docker-hadoop/docker-compose.yml](../docker-hadoop/docker-compose.yml) and change a few things. Go to the `spark-notebook` service and insert the following attribute:
+
+***Note**: if you do NOT want to do this within the Docker Application, disregard the steps above.*
+```yaml
+service:
+  spark-notebook:
+    ...
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]
+```
+
+This will enable access for the spark-notebook container to your GPU resource by making a reservation. Depending on your GPU, you may need to change your `driver` as well as `device_ids` to better suit your machine. You can read more information [here](https://docs.docker.com/compose/how-tos/gpu-support/).
+
+### 2. Installing PyTorch
+If you do not wish to use GPU resources, you can just run pip install:
+```bash
+pip install torch
+```
+However, if you intend to use your GPU for computation, please visit [here](https://pytorch.org/get-started/locally/) and choose the suitable options for your machine. This is very vital in order for torch's computations on GPU to work.
