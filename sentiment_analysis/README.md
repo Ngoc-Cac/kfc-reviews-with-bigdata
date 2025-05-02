@@ -1,11 +1,26 @@
 # Big-Data-G4: Sentiment Anlysis
-This is the core of the project where data preprocessing, model training and data anlytics are done.
+This is the core of the project where data preprocessing, model training and data anlytics are done. The preprocessing and data analytics are mostly done with Spark. For ML models, we utilise Spark's built in MLlib as well as PyTorch for Deep Learning models.\
+For information on how to install PyTorch as well as how to set up GPU resources for the Docker application to use, see []().
 
-## The Pipeline
-The project aims to build a small-scale Big Data system that stores information about Google Places (address, price range, reviews). The data are stored using Apache Hadoop's HDFS and are processed with Apache Spark through PySpark API.
+This section includes:
+- [Preprocessing](#preprocessing)
+- [EDA](#eda)
+- [Model Training](#model-training)
 
-To deploy the HDFS, we opt for prebuilt Docker images as these are lightweight and easy to deploy. Furthermore, we also deploy a container within the Docker application to run PySpark and other Python scripts. Further information can be found in [`docker-hadoop/README.md`](../docker-hadoop/README.md). The Docker application is hosted locally on our machine.
+## Preprocessing
+As mentioned, the whole project will process data using Spark, more specifically Python API for Spark called [PySpark](https://spark.apache.org/docs/latest/api/python/index.html). The preprocessing steps include:
+1. Bucketizing rating scores (1-5) into sentiments (positive, neutral, negative) for model training. Ratings above 3 stars are consider positive, below 3 stars are considered negative and neutral otherwise.
+2. Vietnamese word tokenization using [PyVi](https://github.com/trungtv/pyvi)'s tokenizer.
+3. Replacing abbreviated words with its full form.
 
-When the Docker application is set up, we are then free to proceed as needed. The first task was to crawl reviews data. We did this by using [`selenium`](https://pypi.org/project/selenium/) to simulate the website for user-input interactions. Then when data are crawled from a website, we save the result to the hosted HDFS with [`hdfs`](https://pypi.org/project/hdfs/) (A Python API for WebHDFS). The details on how this works is provided at [`review_crawl/README.md`](../review_crawl/README.md).
+After preprocessing, the data is saved back into the HDFS for data anlytics. Furthermore, to create convenience for model training, the preprocessed data is also splitted into train and test set using stratification and saved into HDFS.
 
-Finally, after crawling, we proceeded to preprocess the data and fine-tune some models as well as use the preprocessed data for EDA.
+## EDA
+
+
+## Model Training
+
+
+---
+---
+## Installing PyTorch and Sharing GPU resources to Docker Container
