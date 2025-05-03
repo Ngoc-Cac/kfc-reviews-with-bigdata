@@ -1,6 +1,10 @@
 # Vietnamese tokenizer
 pyvi
 
+pyspark
+pandas
+sklearn
+
 # python api for spark
 pyspark
 
