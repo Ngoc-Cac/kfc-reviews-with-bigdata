@@ -19,16 +19,25 @@ After preprocessing, the data is saved back into the HDFS for data anlytics. Fur
 
 
 ## Model Training
+We present two models that both uses [PhoBERT](https://github.com/VinAIResearch/PhoBERT) to create embeddings for reviews. Like most text classification model, we only use the output of the `[CLS]` token for classification and discard the rest.
 
+For the Logistic Regression model, we utilize the LogisticRegression module given in Spark's [MLlib](https://spark.apache.org/docs/latest/ml-guide.html). However, for the neural network, we use PyTorch to build the Multi-layer Perceptron. Even though MLlib does provide a MLP model, the model does not allow for customization with activation functions, optimization algorithms,...
+
+With the MLP, we first try out some activation functions like Sigmoid and ReLU and decided to stick with LeakyReLU with 0.02 negative slope. We also tried out various number of hidden layers and found that around 2 hidden layers had the best convergence. However, we did not experiment much with the width of the hidden layers.
+
+From there on, we test out for some learning rates using Adam algorithm and found that a learning rate of $1.5\cdot10^{-5}$ had the best convergence. The search was done by running around 10-20 epochs for some inital values and then run 50 epochs on the values we found most potential. However, due to time contraints, the best we could stick to was $1.5\cdot10^{-5}$.\
+Although, we speculate that some value between $1\cdot10^{-5}$ and $1.5\cdot10^{-5}$ would be better.
+
+<div align='center'>
+    <img src="../resource/pngs/epoch40.png" width=600>
+</div>
 
 ---
 ---
 ## Installing PyTorch and Sharing GPU resources to Docker Container
-If you want to test some stuff out with the DL models, there are two things you need to do:
-### 1. Decide whether or not you want to use GPU resources for computations.
-If this is a resounding yes and you also want to use PyTorch within the Docker application, you need to head over to [docker-hadoop/docker-compose.yml](../docker-hadoop/docker-compose.yml) and change a few things. Go to the `spark-notebook` service and insert the following attribute:
-
-***Note**: if you do NOT want to do this within the Docker Application, disregard this.*
+If you want to test some stuff out with the DL models, there are two things you need to note:
+### 1. Sharing GPU resources with Docker container
+If want to use PyTorch inside of the Docker application with GPU resource, you need to head over to [docker-hadoop/docker-compose.yml](../docker-hadoop/docker-compose.yml) and change a few things. Go to the `spark-notebook` service and insert the following attribute:
 ```yaml
 service:
   spark-notebook:
@@ -42,11 +51,11 @@ service:
               capabilities: [gpu]
 ```
 
-This will enable access for the spark-notebook container to your GPU resource by making a reservation. Depending on your GPU, you may need to change your `driver` as well as `device_ids` to better suit your machine. You can read more information [here](https://docs.docker.com/compose/how-tos/gpu-support/).
+This will enable access for the `spark-notebook` container to your GPU resource by making a reservation to the correpsonding device. Depending on your GPU, you may need to change your `driver` value as well as `device_ids` to better suit your case. You can read more information [here](https://docs.docker.com/compose/how-tos/gpu-support/).
 
 ### 2. Installing PyTorch
-If you do not wish to use GPU resources, you can just run pip install:
+To install PyTorch, you can just run:
 ```bash
 pip install torch
 ```
-However, if you intend to use your GPU for computation, please visit [here](https://pytorch.org/get-started/locally/) and choose the suitable options for your machine. This is very vital in order for torch's computations on GPU to work.
+However, if you intend to use your GPU for PyTorch's computations, please visit [here](https://pytorch.org/get-started/locally/) and choose the suitable options for your machine. This is very vital in order for torch's computations on GPU to work.
