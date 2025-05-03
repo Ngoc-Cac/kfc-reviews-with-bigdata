@@ -1,2 +1,8 @@
 # Vietnamese tokenizer
 pyvi
+
+torch
+pyspark
+pandas
+transformers
+sklearn
