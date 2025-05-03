@@ -4,19 +4,24 @@ from torch import nn
 from typing import Iterable
 
 
+SENTIMENTS_AS_INDEX = {
+    'positive': 0,
+    'neutral': 1,
+    'negative': 2
+}
+
 class BaseClassifierWithPhoBERT(nn.Module):
     def __init__(self, hidden_layer):
         super().__init__()
         self.phobert = AutoModel.from_pretrained("vinai/phobert-base-v2")
-        # Freeze everything except for the RoBERTa pooling layer
+        # Freeze everything
         self.phobert.requires_grad_(False)
-        self.phobert.pooler.requires_grad_(True)
         
         self.hidden_layer = hidden_layer
 
-    def forward(self, text_input_ids, attention_mask):
+    def forward(self, text_input_ids, attention_mask=None):
         phobert_embeddings = self.phobert(text_input_ids, attention_mask)
-        return self.hidden_layer(phobert_embeddings['pooler_output'])
+        return self.hidden_layer(phobert_embeddings['last_hidden_state'][:, 0, :])
     
 class MLPClassifierWithPhoBERT(BaseClassifierWithPhoBERT):
     def __init__(self,
