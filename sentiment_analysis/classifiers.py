@@ -4,6 +4,12 @@ from torch import nn
 from typing import Iterable
 
 
+SENTIMENTS_AS_INDEX = {
+    'positive': 0,
+    'neutral': 1,
+    'negative': 2
+}
+
 class BaseClassifierWithPhoBERT(nn.Module):
     def __init__(self, hidden_layer):
         super().__init__()
