@@ -1,5 +1,5 @@
-# Big-Data-G4: Sentiment Analysis on KFC reviews from Google Maps
-This is a project on Sentiment Analysis using Big Data framework Apache Hadoop and Apache Spark. For ease of deployment, we opt for a multi-container Docker application to install the necessary service: Hadoop, Spark, Python and Jupyter.\
+# Sentiment Analysis on KFC reviews from Google Maps
+This is a group project on Sentiment Analysis using Big Data framework Apache Hadoop and Apache Spark. For ease of deployment, we opt for a multi-container Docker application to install the necessary service: Hadoop, Spark, Python and Jupyter.\
 The project aims to develop a classification model on general comments about the chain KFC. In order to train the model, we crawled reviews from KFC locations within Hồ Chí Minh city on Google Maps.
 
 
@@ -9,6 +9,7 @@ The project aims to develop a classification model on general comments about the
     - [Crawling Reviews from Google Maps](#reviews_crawl)
     - [Processing data with PySpark](#reviews_store)
     - [Model Training and Evaluation](#models)
+- [**Results and Dicussion**](#results-and-discussion)
 - [**Acknowledgements**](#acknowledgements)
 - [**References**](#references)
 
@@ -56,8 +57,12 @@ More specifically, we deploy PySpark through the prebuilt Docker image [jupyter/
 <details>
 <summary><b>Model Training and Evaluation</b></summary>
 
+For classification models, we chose to train a Logistic Regression model and a simple Multi-layer Perceptron neural network. The details of how models are trained are discussed in [`sentiment_analysis/README.md`](./sentiment_analysis/README.md).
 
+However, because our dataset are quite imbalanced, especially with neutral reviews, we decided to compare models using class-wise metrics. More specifically, we compute precision, recall and F1 measure for each class and compare both models. The full results can be found in [`sentiment_analysis/model_eval.ipynb`](./sentiment_analysis/model_eval.ipynb).
 </details>
+
+## Results and Discussion
 
 ## Acknowledgements
 ## References
