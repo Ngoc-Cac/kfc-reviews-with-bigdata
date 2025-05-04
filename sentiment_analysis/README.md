@@ -32,6 +32,8 @@ Although, we speculate that some value between $1\cdot10^{-5}$ and $1.5\cdot10^{
     <img src="../resource/pngs/epoch40.png" width=600>
 </div>
 
+For results and discussion of the models, please see [`model_eval.ipynb`](./model_eval.ipynb) or [`README.md`](../README.md)
+
 ---
 ---
 ## Installing PyTorch and Sharing GPU resources to Docker Container
