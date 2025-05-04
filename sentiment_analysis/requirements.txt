@@ -1,2 +1,21 @@
 # Vietnamese tokenizer
 pyvi
+
+pyspark
+pandas
+sklearn
+
+# python api for spark
+pyspark
+
+# dl stuff
+transformers
+
+
+# === OPTIONAL ===
+# visualization
+matplotlib [security]
+
+# utilities for computation stuff before visualization
+pandas [security]
+numpy [security]

@@ -1,4 +1,4 @@
-version: '3'
+version: '1'
 
 services:
   namenode:
@@ -16,16 +16,16 @@ services:
     networks:
       - hadoop
       
-  datanode1:
+  datanode:
     image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
-    container_name: datanode1
+    container_name: datanode
     ports:
       - 9864:9864  # WebUI - dfs.datanode.http.address
       - 9866:9866  # Data transfer - dfs.datanode.address
     depends_on:
       - namenode
     volumes:
-      - hadoop_datanode1:/hadoop/dfs/data
+      - hadoop_datanode:/hadoop/dfs/data
     env_file:
       - ./hadoop.env
     environment:
@@ -50,7 +50,7 @@ services:
   
 volumes:
   hadoop_namenode:
-  hadoop_datanode1:
+  hadoop_datanode:
 
 networks:
   hadoop:
