@@ -16,7 +16,10 @@ As mentioned, the whole project will process data using Spark, more specifically
 After preprocessing, the data is saved back into the HDFS for data anlytics. Furthermore, to create convenience for model training, the preprocessed data is also splitted into train and test set using stratification and saved into HDFS.
 
 ## EDA
+After preprocessing, we went ahead and do a little analysis on the data. This is present within [`eda.ipynb`](eda.ipynb).
 
+We drew several graphs to demonstrate the relationship between each places and the ratings.\
+We also demonstrate the relationship between the words and sentiments through serveral word clouds.
 
 ## Model Training
 We present two models that both uses [PhoBERT](https://github.com/VinAIResearch/PhoBERT) to create embeddings for reviews. Like most text classification model, we only use the output of the `[CLS]` token for classification and discard the rest.
