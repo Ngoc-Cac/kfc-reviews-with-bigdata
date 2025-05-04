@@ -1,4 +1,4 @@
-# Big-Data-G4: Docker application with Hadoop and Spark installed
+# Docker application with Hadoop and PySpark installed
 This is a Docker container with Hadoop, Spark and Jupyter installed.
 
 The Jupyter Server Web UI can be accessed at http://localhost:8888.
