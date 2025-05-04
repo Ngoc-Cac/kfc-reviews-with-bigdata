@@ -1,4 +1,4 @@
-# Big-Data-G4: Sentiment Anlysis
+# Core - Sentiment Anlysis
 This is the core of the project where data preprocessing, model training and data anlytics are done. The preprocessing and data analytics are mostly done with Spark. For ML models, we utilise Spark's built in MLlib as well as PyTorch for Deep Learning models.\
 For information on how to install PyTorch as well as how to set up GPU resources for the Docker application to use, see []().
 
