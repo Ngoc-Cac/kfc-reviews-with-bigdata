@@ -16,7 +16,7 @@ As mentioned, the whole project will process data using Spark, more specifically
 After preprocessing, the data is saved back into the HDFS for data anlytics. Furthermore, to create convenience for model training, the preprocessed data is also splitted into train and test set using stratification and saved into HDFS.
 
 ## EDA
-After preprocessing, we went ahead and do a little analysis on the data. This is present within [`eda.ipynb`](eda.ipynb).
+After preprocessing, we went ahead and do a little analysis on the data. The detailed results are presented in [`eda.ipynb`](eda.ipynb).
 
 We drew several graphs to demonstrate the relationship between each places and the ratings.\
 We also demonstrate the relationship between the words and sentiments through serveral word clouds.
