@@ -2,7 +2,6 @@
 This is a group project on Sentiment Analysis using Big Data framework Apache Hadoop and Apache Spark. For ease of deployment, we opt for a multi-container Docker application to install the necessary services: Hadoop, Spark, Python and Jupyter.\
 The project aims to develop a classification model on general comments about the KFC fast-food chain. In order to train the model, we crawled reviews from multiple KFC locations within Hồ Chí Minh city on Google Maps.
 
-
 #### Table of Contents
 - [**Overview**](#overview)
     - [Deploying the Docker Application](#docker_deploy)
@@ -76,7 +75,8 @@ In summary, the good performance on detecting positive and negative reviews in b
 - Finally, during the training of multi-layer perceptron, we have only tested out a few learning rates and did not do an exhaustive search on them. Furthermore, we did not tune the betas used in Adam and decided to use the recommended numbers. More exhaustive method of tuning these hyperparameters might increase the model performance.
 
 ## Acknowledgements
-## References
+We would like to show gratitudes to Dr. Nguyễn Mạnh Tuấn for guiding us throughout the course of Big Data and Applications. He has introduced us to new and intriguing concepts about Big Data. Moreover, we were able to immerse in practical usages through multiple informative demonstrations that he has provided. It has been an enlightening experience for us.
+
 ### Our contributors:
 <a href="https://github.com/Ngoc-Cac">
     <img src="https://avatars.githubusercontent.com/u/144905277?v=4" alt="drawing" width="60">
