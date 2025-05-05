@@ -1,6 +1,6 @@
 # Sentiment Analysis on KFC reviews from Google Maps
-This is a group project on Sentiment Analysis using Big Data framework Apache Hadoop and Apache Spark. For ease of deployment, we opt for a multi-container Docker application to install the necessary service: Hadoop, Spark, Python and Jupyter.\
-The project aims to develop a classification model on general comments about the chain KFC. In order to train the model, we crawled reviews from KFC locations within Hồ Chí Minh city on Google Maps.
+This is a group project on Sentiment Analysis using Big Data framework Apache Hadoop and Apache Spark. For ease of deployment, we opt for a multi-container Docker application to install the necessary services: Hadoop, Spark, Python and Jupyter.\
+The project aims to develop a classification model on general comments about the KFC fast-food chain. In order to train the model, we crawled reviews from multiple KFC locations within Hồ Chí Minh city on Google Maps.
 
 
 #### Table of Contents
@@ -63,6 +63,17 @@ However, because our dataset are quite imbalanced, especially with neutral revie
 </details>
 
 ## Results and Discussion
+We proceeded to run inference on two data: the test set from our dataset and a few comments we collected manuall on Foody.
+
+The results on test set shows both model to have equal performance at detecting positive and negative reviews, shown by a difference in F1 meassure of only around 3%. Further inspection shows that the multi-layer perceptron has higher precision, making its predictions more reliable than that of the Logistic Regression model. However, the Logistic Regression model compensates in recall, able to detect more negative reviews. For neutral reviews, the Logistic Regression model has no ability to distiniguish this. On the other hand, the multi-layer perceptron can correctly identify some neutral reviews, but a recall of around 50% show that it performs no better than random guessing for these reivews.
+
+Afterwards, we tested out both models on a few comments posted on [Foody](https://www.foody.vn/ho-chi-minh/kfc-ly-thuong-kiet/binh-luan). Both models agree on all comments except for one comment. In more details, multi-layer perceptron identify this comment to be neutral, where Logistic Regerssion identify it to be positive. Checking the content of the comment, we found the comment to contain both criticisms and positive feedback. Furthermore, the reviews contain words like `"ổn"`, `"khá"` and `"oke"`, which is quite typical of the 3-star reviews we have collected on Google Maps. These features gives insight onto why multi-layer perceptron identified it as a neutral review, suggesting that the model could capture these subtle details.
+
+In summary, the good performance on detecting positive and negative reviews in both models suggests that they can effectively use the embeddings created by PhoBERT, and that these embeddings are suitable for this classification task. We found this to be typical of BERT-based models, where hidden contexts and subtle relationships between words can be captured by the encoder-only transformer. However, the hindrance in neutral reviews can be best explained by the low-quality samples in the dataset as well as the shortage of neutral reviews. Based on this, we give the following suggests for future work:
+- Manually labelling the reviews: to ensure quality on neutral reviews, as well as other reviews, we suggest manually checking the content of reviews after bucketizing them into positive, neutral and negative classes like we did during preprocessing.
+- Crawling reviews from other sites: we have noticed that while people provide lots of reviews on Google Maps, most reviews usually conists of a single word or no content at all. Even though we crawled from a total of 20 places, only around 4000 reviews were actually crawled, giving an average of only 200 reviews per place.
+- Along with reviews, we have also found photos posted by users. Due to time constraints, we did not invest much into crawling these photos. However, we speculate that these photos can also help provide information on the semantics of the reviews.
+- Finally, during the training of multi-layer perceptron, we have only tested out a few learning rates and did not do an exhaustive search on them. Furthermore, we did not tune the betas used in Adam and decided to use the recommended numbers. More exhaustive method of tuning these hyperparameters might increase the model performance.
 
 ## Acknowledgements
 ## References
