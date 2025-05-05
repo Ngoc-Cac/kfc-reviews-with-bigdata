@@ -12,6 +12,7 @@ The project aims to develop a classification model on general comments about the
 - [**Acknowledgements**](#acknowledgements)
 - [**References**](#references)
 
+---
 ## Overview
 The whole project can be best explained by the following figure:
 
@@ -77,7 +78,6 @@ In summary, the good performance on detecting positive and negative reviews in b
 ## Acknowledgements
 We would like to show gratitudes to Dr. Nguyễn Mạnh Tuấn for guiding us throughout the course of Big Data and Applications. He has introduced us to new and intriguing concepts about Big Data. Moreover, we were able to immerse in practical usages through multiple informative demonstrations that he has provided. It has been an enlightening experience for us.
 
----
 ---
 ### Our contributors:
 <a href="https://github.com/Ngoc-Cac">
