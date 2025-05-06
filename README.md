@@ -62,7 +62,7 @@ However, because our dataset are quite imbalanced, especially with neutral revie
 </details>
 
 ## Results and Discussion
-We proceeded to run inference on two data: the test set from our dataset and a few comments we collected manuall on Foody.
+We proceeded to run inference on two data: the test set from our dataset and a few comments we manually collected on Foody.
 
 The results on test set shows both model to have equal performance at detecting positive and negative reviews, shown by a difference in F1 meassure of only around 3%. Further inspection shows that the multi-layer perceptron has higher precision, making its predictions more reliable than that of the Logistic Regression model. However, the Logistic Regression model compensates in recall, able to detect more negative reviews. For neutral reviews, the Logistic Regression model has no ability to distiniguish this. On the other hand, the multi-layer perceptron can correctly identify some neutral reviews, but a recall of around 50% show that it performs no better than random guessing for these reivews.
 
