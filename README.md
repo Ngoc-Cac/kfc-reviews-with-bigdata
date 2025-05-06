@@ -10,7 +10,6 @@ The project aims to develop a classification model on general comments about the
     - [Model Training and Evaluation](#models)
 - [**Results and Dicussion**](#results-and-discussion)
 - [**Acknowledgements**](#acknowledgements)
-- [**References**](#references)
 
 ---
 ## Overview
