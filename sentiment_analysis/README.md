@@ -1,8 +1,8 @@
 # Core - Sentiment Anlysis
 This is the core of the project where data preprocessing, model training and data anlytics are done. The preprocessing and data analytics are mostly done with Spark. For ML models, we utilise Spark's built in MLlib as well as PyTorch for Deep Learning models.\
-For information on how to install PyTorch as well as how to set up GPU resources for the Docker application to use, see []().
+For information on how to install PyTorch as well as how to set up GPU resources for the Docker application to use, see [Installing PyTorch and Sharing GPU resources to Docker Container](#installing-pytorch-and-sharing-gpu-resources-to-docker-container).
 
-This section includes:
+This section includes information on:
 - [Preprocessing](#preprocessing)
 - [EDA](#eda)
 - [Model Training](#model-training)
@@ -36,6 +36,17 @@ Although, we speculate that some value between $1\cdot10^{-5}$ and $1.5\cdot10^{
 </div>
 
 For results and discussion of the models, please see [`model_eval.ipynb`](./model_eval.ipynb) or [`README.md`](../README.md)
+
+## Citation
+```
+@inproceedings{phobert,
+title     = {{PhoBERT: Pre-trained language models for Vietnamese}},
+author    = {Dat Quoc Nguyen and Anh Tuan Nguyen},
+booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2020},
+year      = {2020},
+pages     = {1037--1042}
+}
+```
 
 ---
 ---
