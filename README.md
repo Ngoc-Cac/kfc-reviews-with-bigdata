@@ -75,7 +75,7 @@ In summary, the good performance on detecting positive and negative reviews in b
 - **Tuning hyperparameters**: During the training of multi-layer perceptron, we have only tested out a few learning rates and did not do an exhaustive search on them. Furthermore, we did not tune the betas used in Adam and decided to use the recommended numbers. More exhaustive method of tuning these hyperparameters might increase the model performance.
 
 ## Acknowledgements
-We would like to show gratitudes to Dr. Nguyễn Mạnh Tuấn for guiding us throughout the course of Big Data and Applications. He has introduced us to new and intriguing concepts about Big Data. Moreover, we were able to immerse in practical usages through multiple informative demonstrations that he has provided. It has been an enlightening experience for us.
+We would like to show gratitudes to Dr. Nguyễn Mạnh Tuấn for guiding us throughout the course of Big Data and Applications. He has introduced us to new and intriguing concepts about Big Data. Moreover, we were able to immerse in practical usages through multiple informative demonstrations that he has provided. All of which has enabled us to finish this project. It has been an enlightening experience for us.
 
 ---
 ### Our contributors:
