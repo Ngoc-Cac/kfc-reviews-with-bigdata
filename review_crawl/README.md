@@ -1,4 +1,4 @@
-# Big-Data-G4: Review Crawler
+# Review Crawler
 Google Maps reviews crawling process for the main project. The crawler uses [selenium](https://pypi.org/project/selenium/) to simulate the website and crawl data through HTML elements.\
 Please note that while Google Maps **DO** provide an API, this requires you to set up a billing account and thus can be inconvenient.
 

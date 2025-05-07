@@ -1,4 +1,4 @@
-# Big-Data-G4: Docker application with Hadoop and Spark installed
+# Docker application with Hadoop and PySpark installed
 This is a Docker container with Hadoop, Spark and Jupyter installed.
 
 The Jupyter Server Web UI can be accessed at http://localhost:8888.
@@ -26,4 +26,4 @@ Note that when running, the notebook is running within the container's file syst
 ## References
 - The docker-hadoop images are provided by [big-data-europe/docker-hadoop](https://github.com/big-data-europe).
 - The pyspark-notebook image is provided by [jupyter/pyspark-notebook](https://hub.docker.com/r/jupyter/pyspark-notebook). This image belongs to the [Jupyter Docker Stacks](https://jupyter-docker-stacks.readthedocs.io/en/latest/) series.
-- The `docker-compose.yml` and `hadoop.env` file is provided by [hadoop-spark](https://github.com/OneCricketeer/docker-stacks/tree/master/hadoop-spark) with minor adjustments to suit this project.
+- The `docker-compose.yml` and `hadoop.env` file is referenced from [hadoop-spark](https://github.com/OneCricketeer/docker-stacks/tree/master/hadoop-spark) with minor adjustments to suit this project.

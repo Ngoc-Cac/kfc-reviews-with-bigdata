@@ -1,8 +1,8 @@
-# Big-Data-G4: Sentiment Anlysis
+# Core - Sentiment Anlysis
 This is the core of the project where data preprocessing, model training and data anlytics are done. The preprocessing and data analytics are mostly done with Spark. For ML models, we utilise Spark's built in MLlib as well as PyTorch for Deep Learning models.\
-For information on how to install PyTorch as well as how to set up GPU resources for the Docker application to use, see []().
+For information on how to install PyTorch as well as how to set up GPU resources for the Docker application to use, see [Installing PyTorch and Sharing GPU resources to Docker Container](#installing-pytorch-and-sharing-gpu-resources-to-docker-container).
 
-This section includes:
+This section includes information on:
 - [Preprocessing](#preprocessing)
 - [EDA](#eda)
 - [Model Training](#model-training)
@@ -16,7 +16,7 @@ As mentioned, the whole project will process data using Spark, more specifically
 After preprocessing, the data is saved back into the HDFS for data anlytics. Furthermore, to create convenience for model training, the preprocessed data is also splitted into train and test set using stratification and saved into HDFS.
 
 ## EDA
-After preprocessing, we went ahead and do a little analysis on the data. This is present within [`eda.ipynb`](eda.ipynb).
+After preprocessing, we went ahead and do a little analysis on the data. The detailed results are presented in [`eda.ipynb`](eda.ipynb).
 
 We drew several graphs to demonstrate the relationship between each places and the ratings.\
 We also demonstrate the relationship between the words and sentiments through serveral word clouds.
@@ -36,6 +36,17 @@ Although, we speculate that some value between $1\cdot10^{-5}$ and $1.5\cdot10^{
 </div>
 
 For results and discussion of the models, please see [`model_eval.ipynb`](./model_eval.ipynb) or [`README.md`](../README.md)
+
+## Citation
+```
+@inproceedings{phobert,
+title     = {{PhoBERT: Pre-trained language models for Vietnamese}},
+author    = {Dat Quoc Nguyen and Anh Tuan Nguyen},
+booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2020},
+year      = {2020},
+pages     = {1037--1042}
+}
+```
 
 ---
 ---
