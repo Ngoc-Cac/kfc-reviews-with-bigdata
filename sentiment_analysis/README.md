@@ -37,7 +37,7 @@ Although, we speculate that some value between $1\cdot10^{-5}$ and $1.5\cdot10^{
 
 For results and discussion of the models, please see [`model_eval.ipynb`](./model_eval.ipynb) or [`README.md`](../README.md)
 
-## Citation
+## References
 ```
 @inproceedings{phobert,
 title     = {{PhoBERT: Pre-trained language models for Vietnamese}},
